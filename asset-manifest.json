@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tg-react-bot/static/css/main.dff283e4.css",
+    "main.js": "/tg-react-bot/static/js/main.afb7edb9.js",
+    "index.html": "/tg-react-bot/index.html",
+    "main.dff283e4.css.map": "/tg-react-bot/static/css/main.dff283e4.css.map",
+    "main.afb7edb9.js.map": "/tg-react-bot/static/js/main.afb7edb9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dff283e4.css",
+    "static/js/main.afb7edb9.js"
+  ]
+}
