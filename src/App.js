@@ -28,13 +28,12 @@ function App() {
     } else {
       // sending
       tg.sendData(JSON.stringify(userDataEx));
+      tg.close();
     }
     
     setTimeout(() => {
       setSubmitError('');
     }, 5000)
-
-    tg.close();
   };
 
   return (
