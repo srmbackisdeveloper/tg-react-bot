@@ -13,6 +13,7 @@ function App() {
     phoneNumber: 0
   });
 
+
   // main -> form
   const handleBuyClick = () => {
     setShowForm(true);
@@ -50,7 +51,8 @@ function App() {
 
       <div className='form-div' style={{ display: showForm ? 'block' : 'none' }}>
         <div className='form'>
-          <input type='text' placeholder='Name' 
+          <input type='text' 
+          placeholder={userDataEx.name ? userDataEx.name : "Name"} 
           onChange={(e) => setUserDataEx({...userDataEx, name: e.target.value})} />
 
           <input type='email' placeholder='Email'
