@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './App.css';
-import { useEffect } from 'react';
 const imageSrc = 'https://i0.wp.com/post.healthline.com/wp-content/uploads/2021/09/sushi-sashimi-1296x728-header.jpg?w=1155&h=1528'
 
 const tg = window.Telegram.WebApp;
