@@ -1,48 +1,70 @@
+import { useState } from 'react';
 import './App.css';
+import { useEffect } from 'react';
 const imageSrc = 'https://i0.wp.com/post.healthline.com/wp-content/uploads/2021/09/sushi-sashimi-1296x728-header.jpg?w=1155&h=1528'
 
+const tg = window.Telegram.WebApp;
+
 function App() {
-  useEffect(() => {
-    const buyButton = document.getElementById("buy");
-    const orderButton = document.getElementById("order");
+  const [submitError, setSubmitError] = useState('');
+  const [showForm, setShowForm] = useState(false);
+  const [userDataEx, setUserDataEx] = useState({  
+    name: '',
+    email: '',
+    phoneNumber: 0
+  });
 
-    buyButton.addEventListener("click", () => {
-      document.getElementById("main").style.display = "none";
-      document.getElementById("form-info").style.display = "block";
+  // main -> form
+  const handleBuyClick = () => {
+    setShowForm(true);
+  };
 
-      // You may set the value for user_name-info here (assuming it's an input)
-      document.getElementById("user_name-info").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;
-    });
+  // form -> tg
+  const handleOrderClick = (e) => {
+    e.preventDefault();
 
-    orderButton.addEventListener("click", () => {
-      tg.close();
-    });
+    if (userDataEx.name.length < 5 || userDataEx.email.length < 5 || userDataEx.phoneNumber.length < 5) {
+      setSubmitError('All fields are required to have minumum 5 symbols');
+    } else {
+      // sending
+      tg.sendData(JSON.stringify(userDataEx));
+    }
+    
+    setTimeout(() => {
+      setSubmitError('');
+    }, 5000)
 
-    return () => {
-      // Cleanup event listeners when the component unmounts
-      buyButton.removeEventListener("click");
-      orderButton.removeEventListener("click");
-    };
-  }, []);
-
+    tg.close();
+  };
 
   return (
-     <div className="container">
-      <div id='main' className='main'>
-        <h1>Sbake Sushi</h1>
+    <div className="container">
+      <h1>Sbake Sushi</h1>
+      <h3>Welcome, {tg.initDataUnsafe?.user?.username}!</h3>
+
+      <div style={{ display: showForm ? 'none' : 'block' }} >
         <p>Sushi Set {"<Syrymbek>"}</p>
         <img className='main-image' src={imageSrc} alt="Sushi Set" />
-        <button id='buy'>Buy</button>
+        <button id='buy' onClick={handleBuyClick}>Buy</button>
       </div>
 
-      <form id='form-info' style={{ display: 'none' }}>
-        <input type='text' placeholder='Name' id='user_name-info' />
-        <input type='email' placeholder='Email' id='user_email' />
-        <input type='tel' placeholder='Phone number' id='user_phone' />
-        <button id='order'>Send Order</button>
-      </form>
+      <div className='form-div' style={{ display: showForm ? 'block' : 'none' }}>
+        <div className='form'>
+          <input type='text' placeholder='Name' 
+          onChange={(e) => setUserDataEx({...userDataEx, name: e.target.value})} />
 
-      <script src="https://telegram.org/js/telegram-web-app.js"></script>
+          <input type='email' placeholder='Email'
+          onChange={(e) => setUserDataEx({...userDataEx, email: e.target.value})} />
+
+          <input type='tel' placeholder='Phone number'
+          onChange={(e) => setUserDataEx({...userDataEx, phoneNumber: e.target.value})} />
+          
+          <button onClick={handleOrderClick}>
+            Send Order
+          </button>
+          <p className='error'>{submitError}</p>
+        </div>
+      </div>
     </div>
   );
 }

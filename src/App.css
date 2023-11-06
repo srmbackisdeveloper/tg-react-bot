@@ -58,7 +58,39 @@ button {
       padding: 8px 16px;
   }
 }
+/* form */
 
-#form {
+.form-div {
   display: none;
+}
+
+.form-div {
+  margin: 0, auto;
+  display: block;
+  margin-top: 20px;
+}
+
+.form-div input, .form-div button {
+  margin: 10px 0;
+  padding: 5px;
+  display: block;
+  width: 100%;
+}
+
+.form-div .form {
+  
+}
+
+.form-div button {
+  width: 75%;
+  margin: 0 auto;
+  background-color: blue;
+  color: white;
+}
+
+.error {
+  text-align: center  ;
+  color: crimson;
+  font-size: 12px;
+  text-decoration: underline;
 }
