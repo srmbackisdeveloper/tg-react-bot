@@ -22,7 +22,7 @@ function App() {
   const handleOrderClick = (e) => {
     e.preventDefault();
 
-    if (userDataEx.name.length < 5 || userDataEx.email.length < 5 || userDataEx.phoneNumber.length < 5) {
+    if (userDataEx.name.length < 5 || userDataEx.email.length < 5 || userDataEx.phoneNumber.toString().length < 5) {
       setSubmitError('All fields are required to have minumum 5 symbols');
     } else {
       // sending
@@ -38,7 +38,9 @@ function App() {
   return (
     <div className="container">
       <h1>Sbake Sushi</h1>
-      <h3>Welcome, {tg.initDataUnsafe?.user?.username}!</h3>
+      <h3>Welcome, 
+        { `${tg.initDataUnsafe?.user?.first_name} ${tg.initDataUnsafe?.user?.last_name} (${tg.initDataUnsafe?.user?.username})!` }
+      </h3>
 
       <div style={{ display: showForm ? 'none' : 'block' }} >
         <p>Sushi Set {"<Syrymbek>"}</p>
