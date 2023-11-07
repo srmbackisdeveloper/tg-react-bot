@@ -41,11 +41,13 @@ function App() {
 
   useEffect(() => {
     let tg = window.Telegram.WebApp;
-    
+  
+    const user = tg.initDataUnsafe?.user;
+  
     setTgUser({
-      last_name: tg.initDataUnsafe?.user?.first_name,
-      first_name: tg.initDataUnsafe?.user?.last_name,
-      username: tg.initDataUnsafe?.user?.username,
+      first_name: user?.first_name || 'First',
+      last_name: user?.last_name || 'Last',
+      username: user?.username || 'Username',
     });
   }, []);
 
