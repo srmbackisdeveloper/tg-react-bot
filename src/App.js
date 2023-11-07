@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import './App.css';
 const imageSrc = 'https://i0.wp.com/post.healthline.com/wp-content/uploads/2021/09/sushi-sashimi-1296x728-header.jpg?w=1155&h=1528'
 
-const tg = window.Telegram.WebApp;
+
 
 function App() {
+  let tg = window.Telegram.WebApp;
+
   const [submitError, setSubmitError] = useState('');
   const [showForm, setShowForm] = useState(false);
   const [tgUser, setTgUser] = useState({});
@@ -38,6 +40,8 @@ function App() {
   };
 
   useEffect(() => {
+    let tg = window.Telegram.WebApp;
+    
     setTgUser({
       last_name: tg.initDataUnsafe?.user?.first_name,
       first_name: tg.initDataUnsafe?.user?.last_name,
