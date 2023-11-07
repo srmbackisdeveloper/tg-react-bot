@@ -38,8 +38,10 @@ function App() {
   };
 
   useEffect(() => {
+    tg.ready();
+
     let username = tg.initDataUnsafe?.user?.username || 'Unknown';
-    setTgUsername(username);
+    setTgUsername(' ' + username);
   }, []);
 
   return (
@@ -73,6 +75,8 @@ function App() {
           <p className='error'>{submitError}</p>
         </div>
       </div>
+
+      <script src="https://telegram.org/js/telegram-web-app.js"></script>
     </div>
   );
 }
