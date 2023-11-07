@@ -55,7 +55,7 @@ function App() {
     <div className="container">
       <h1>Sbake Sushi</h1>
       <h3>Welcome, 
-        { ` ${ tgUser.first_name } ${ tgUser.last_name } (${ tgUser.username })!` }
+        { tgUser.first_name } { tgUser.last_name } ({ tgUser.username })!
       </h3>
 
       <div style={{ display: showForm ? 'none' : 'block' }} >
