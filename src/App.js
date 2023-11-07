@@ -7,6 +7,7 @@ const tg = window.Telegram.WebApp;
 function App() {
   const [submitError, setSubmitError] = useState('');
   const [showForm, setShowForm] = useState(false);
+  const [tgUsername, setTgUsername] = useState('');
   const [userDataEx, setUserDataEx] = useState({  
     name: '',
     email: '',
@@ -36,11 +37,16 @@ function App() {
     }, 4000)
   };
 
+  useEffect(() => {
+    let username = tg.initDataUnsafe?.user?.username || 'Unknown';
+    setTgUsername(username);
+  }, []);
+
   return (
     <div className="container">
       <h1>Sbake Sushi</h1>
       <h3>Welcome, 
-        { tg.initDataUnsafe?.user?.first_name } { tg.initDataUnsafe?.user?.last_name } ({ tg.initDataUnsafe?.user?.username })!
+        { tgUsername }!
       </h3>
 
       <div style={{ display: showForm ? 'none' : 'block' }} >
