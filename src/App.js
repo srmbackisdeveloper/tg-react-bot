@@ -33,7 +33,7 @@ function App() {
     
     setTimeout(() => {
       setSubmitError('');
-    }, 5000)
+    }, 4000)
   };
 
   return (
@@ -62,7 +62,7 @@ function App() {
           onChange={(e) => setUserDataEx({...userDataEx, phoneNumber: e.target.value})} />
           
           <button onClick={handleOrderClick}>
-            Send Order
+            Send order
           </button>
           <p className='error'>{submitError}</p>
         </div>
