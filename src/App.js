@@ -2,14 +2,11 @@ import { useEffect, useState } from 'react';
 import './App.css';
 const imageSrc = 'https://i0.wp.com/post.healthline.com/wp-content/uploads/2021/09/sushi-sashimi-1296x728-header.jpg?w=1155&h=1528'
 
-
+const tg = window.Telegram.WebApp;
 
 function App() {
-  let tg = window.Telegram.WebApp;
-
   const [submitError, setSubmitError] = useState('');
   const [showForm, setShowForm] = useState(false);
-  const [tgUser, setTgUser] = useState({});
   const [userDataEx, setUserDataEx] = useState({  
     name: '',
     email: '',
@@ -39,23 +36,11 @@ function App() {
     }, 4000)
   };
 
-  useEffect(() => {
-    let tg = window.Telegram.WebApp;
-  
-    const user = tg.initDataUnsafe?.user;
-  
-    setTgUser({
-      first_name: user?.first_name || 'First',
-      last_name: user?.last_name || 'Last',
-      username: user?.username || 'Username',
-    });
-  }, []);
-
   return (
     <div className="container">
       <h1>Sbake Sushi</h1>
       <h3>Welcome, 
-        { tgUser.first_name } { tgUser.last_name } ({ tgUser.username })!
+        { tg.initDataUnsafe?.user?.first_name } { tg.initDataUnsafe?.user?.last_name } ({ tg.initDataUnsafe?.user?.username })!
       </h3>
 
       <div style={{ display: showForm ? 'none' : 'block' }} >
